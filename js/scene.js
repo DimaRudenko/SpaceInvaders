@@ -1,16 +1,12 @@
 var SI = SI || {};
 
-SI.Scene = function (canvas, param) {
-    canvas = canvas || {};
+SI.Scene = function (canvas) {
+    canvas = canvas || "canvas";
     this.canvas = document.getElementById(canvas);
     var context = this.context = this.canvas.getContext('2d');
-    if (param) {
-        this.sceneWidth = param.width || 800;
-        this.sceneHeight = param.height || 600;
-    } else {
-        this.sceneWidth = 800;
-        this.sceneHeight = 600;
-    }
+
+    this.sceneWidth = this.canvas.width || 800;
+    this.sceneHeight = this.canvas.height || 600;
 
 
     context.fillStyle = '#000';
@@ -26,12 +22,7 @@ SI.Scene.prototype = {
     gameLoop: function (callback) {
         this.lastGameLoopFrame = new Date().getTime();
         this.callback = callback;
-        // Short circuit the loop check in case multiple scenes
-        // are staged immediately
         this.loop = true;
-
-        // Keep track of the frame we are on (so that animations can be synced
-        // to the next frame)
         this._loopFrame = 0;
         window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
 
@@ -42,10 +33,6 @@ SI.Scene.prototype = {
         var now = new Date().getTime();
         this._loopFrame++;
         this.loop = window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
-        var dt = now - this.lastGameLoopFrame;
-        if (dt > this.frameTimeLimit) {
-            dt = this.frameTimeLimit;
-        }
         this.callback.apply(this, [this.context]);
         this.lastGameLoopFrame = now;
     },
