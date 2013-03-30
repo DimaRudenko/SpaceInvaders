@@ -4,6 +4,7 @@
  * uawebconf 2013
  */
 
+// Space Invaders namespace
 var SI = SI ||{};
 
 SI.extend = function (obj, source) {

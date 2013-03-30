@@ -5,19 +5,27 @@ SI.Scene = function (canvas) {
     this.canvas = document.getElementById(canvas);
     var context = this.context = this.canvas.getContext('2d');
 
-    this.sceneWidth = this.canvas.width || 800;
-    this.sceneHeight = this.canvas.height || 600;
+    this.width = this.canvas.width || 800;
+    this.height = this.canvas.height || 600;
 
 
     context.fillStyle = '#000';
-    context.clearRect(0, 0, this.sceneWidth, this.sceneHeight);
+    context.clearRect(0, 0, this.width, this.height);
     context.beginPath();
-    context.rect(0, 0, this.sceneWidth, this.sceneHeight);
+    context.rect(0, 0, this.width, this.height);
     context.closePath();
     context.fill();
 };
 
 SI.Scene.prototype = {
+
+    getWidth: function () {
+        return this.width;
+    },
+
+    getHeight: function () {
+        return this.height;
+    },
 
     gameLoop: function (callback) {
         this.lastGameLoopFrame = new Date().getTime();
