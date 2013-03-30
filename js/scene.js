@@ -33,7 +33,7 @@ SI.Scene.prototype = {
         var now = new Date().getTime();
         this._loopFrame++;
         this.loop = window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
-        this.callback.apply(this, [this.context]);
+        this.callback.call(this, this);
         this.lastGameLoopFrame = now;
     },
 
