@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Space Invaders for UA Web Challenge</title>
+
+    <!--stats-->
+    <script src="lib/stats/stats.min.js"></script>
+
+
+    <!-- game-->
+    <script src="si.js"></script>
+    <script src="scene.js"></script>
+
+
+</head>
+<body>
+<input type="button" onclick="scene.pauseGame()" value="Pause"/>
+<input type="button" onclick="scene.unpauseGame()" value="Start"/>
+<div>
+    <canvas id="canvas" height="800" width="600">Get a better browser!</canvas>
+</div>
+
+<script src="lib/stats/stats.include.js"></script>
+<script type="text/javascript">
+
+    var balls = [];
+
+
+    function init() {
+        for (var i = 0; i < 4; i++) {
+          //  var b = Newton.circle((i * 50) + 40, (i * 30) + 40, (i * 4) + 10);
+         //   balls.push(b);
+        }
+    }
+    //
+    //    var update = function (context) {
+    //        stats.begin();
+    //        context.clearRect(0, 0, 600, 600);
+    //
+    //        for (var i = 0; i < balls.length; i++) {
+    //            balls[i].update();
+    //            balls[i].draw(context);
+    //        }
+    //        stats.end();
+    //    }
+    //
+    //    scene.update = update;
+    //
+    init();
+
+
+    var scene = SI.scene("canvas");
+
+
+    scene.gameLoop(function (context) {
+        stats.begin();
+
+
+     //   context.clearRect(0, 0, 600, 600);
+
+        var time = new Date().getTime() * 0.002;
+        var x = Math.sin( time ) * 96 + 128;
+        var y = Math.cos( time * 0.9 ) * 96 + 128;
+
+        context.fillStyle = 'rgb(245,245,245)';
+        context.fillRect( 0, 0, 255, 255 );
+
+        context.fillStyle = 'rgb(255,0,0)';
+        context.beginPath();
+        context.arc( x, y, 10, 0, Math.PI * 2, true );
+        context.closePath();
+        context.fill();
+
+        stats.end();
+    });
+</script>
+
+</body>
+</html>
