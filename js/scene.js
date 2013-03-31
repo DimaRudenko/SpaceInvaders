@@ -20,35 +20,28 @@ SI.Scene.prototype = {
     },
 
     gameLoop: function (callback) {
-        this.lastGameLoopFrame = new Date().getTime();
         this.callback = callback;
         this.loop = true;
         this._loopFrame = 0;
-        window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
-
+        window.requestAnimationFrame(this.gameLoopCallback.bind(this));
     },
 
-
-    gameLoopCallbackWrapper: function () {
-        var now = new Date().getTime();
+    gameLoopCallback: function () {
         this._loopFrame++;
-        this.loop = window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
+        this.loop = window.requestAnimationFrame(this.gameLoopCallback.bind(this));
         this.callback.call(this, this);
-        this.lastGameLoopFrame = now;
     },
-
 
     pauseGame: function () {
         if (this.loop) {
             window.cancelRequestAnimFrame(this.loop);
         }
-        this.loop = null;
+        this.loop = false;
     },
 
     unpauseGame: function () {
         if (!this.loop) {
-            this.lastGameLoopFrame = new Date().getTime();
-            this.loop = window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
+            this.loop = window.requestAnimationFrame(this.gameLoopCallback.bind(this));
         }
     }
 };

@@ -1,29 +1,44 @@
-
 /*
  * Copyright (c) 2013, Dima Rudenko
  * uawebconf 2013
  */
 
 // Space Invaders namespace
-var SI = SI ||{};
+var SI = SI || {};
 
 SI.extend = function (obj, source) {
-        if (!source) { return obj; }
-
-        for (var prop in source) {
-            if (source.hasOwnProperty(prop)) {
-                obj[prop] = source[prop];
-            }
-        }
+    if (!source) {
         return obj;
-    };
+    }
 
-  SI.bind =  function (fn, obj) {
-        var args = arguments.length > 2 ? Array.prototype.slice.call(arguments, 2) : null;
-        return function () {
-            return fn.apply(obj, args || arguments);
-        };
+    for (var prop in source) {
+        if (source.hasOwnProperty(prop)) {
+            obj[prop] = source[prop];
+        }
+    }
+    return obj;
+};
+
+SI.bind = function (fn, obj) {
+    var args = arguments.length > 2 ? Array.prototype.slice.call(arguments, 2) : null;
+    return function () {
+        return fn.apply(obj, args || arguments);
     };
+};
+
+/**
+ * Сравниваем методом AABB
+ * @param firsObj
+ * @param secondObj
+ * @returns {boolean}
+ */
+SI.detectColision = function (firsObj, secondObj) {
+    if((firsObj.getPositionY() + firsObj.height) > secondObj.getPositionY()) {
+        console.log("bah!");
+        return true;
+    }
+
+};
 
 /**
  * Provides requestAnimationFrame in a cross browser way.

@@ -13,6 +13,10 @@ SI.Ship = SI.Sprite.extend({
         this.initImage('images/player.png', 56, 40);
         this.bullet = SI.bullet();
         this.fire = false;
+
+        window.addEventListener('keydown', SI.bind(this.keySetState, this), false);
+        window.addEventListener('keyup', SI.bind(this.keyRemoveFromList, this), false);
+
         return this;
     },
 
@@ -24,16 +28,15 @@ SI.Ship = SI.Sprite.extend({
 
         this.bullet.addTo(this._scene);
         this.bullet.setPosition(this.getPositionX(), this.getPositionY() - 24);
-        window.addEventListener('keydown', SI.bind(this.keySetState, this), false);
-        window.addEventListener('keyup', SI.bind(this.keyRemoveFromList, this), false);
+
         return this;
     },
 
-    keySetState: function(e){
-        if(e.keyCode === this.key.LEFT){
+    keySetState: function (e) {
+        if (e.keyCode === this.key.LEFT) {
             delete this.keyPressedList[this.key.RIGHT];
         }
-        if(e.keyCode === this.key.RIGHT){
+        if (e.keyCode === this.key.RIGHT) {
             delete this.keyPressedList[this.key.LEFT];
         }
         this.keyPressedList[e.keyCode] = e;
@@ -41,19 +44,12 @@ SI.Ship = SI.Sprite.extend({
 
 
     keyRemoveFromList: function (e) {
-       delete this.keyPressedList[e.keyCode];
+        delete this.keyPressedList[e.keyCode];
     },
 
 
     keyEventHandler: function () {
-
-
-
-
         for (var keyCode in this.keyPressedList) {
-         //   console.log("keyCode",typeof  keyCode);
-        //    console.log("this.key.LEFT",typeof  this.key.LEFT);
-
             switch (+keyCode) {
                 case this.key.LEFT:
                     if ((this.getPositionX() - this.width / 2 - this.speed) >= 0) {
@@ -70,8 +66,6 @@ SI.Ship = SI.Sprite.extend({
                     break;
             }
         }
-
-
     },
 
 
@@ -80,7 +74,6 @@ SI.Ship = SI.Sprite.extend({
             if (this.bullet.step()) {
                 this.fire = false;
             }
-
         } else {
             this.bullet.setPosition(this.getPositionX(), this.getPositionY() - 24);
         }
