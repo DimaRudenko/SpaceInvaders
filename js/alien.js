@@ -8,6 +8,7 @@ SI.Alien = SI.Sprite.extend({
         this.speed = 1;
         return this;
     },
+
     /**
      * задаем направление движение корабля
      *  left or right
@@ -45,9 +46,6 @@ SI.Alien = SI.Sprite.extend({
         this.step();
         this.draw();
     }
-
-
-
 
 });
 

@@ -42,7 +42,7 @@ SI.Sprite = SI.Class.extend({
     },
 
 
-    moveFront: function (value) {
+    moveDown: function (value) {
         this.setPosition(this.x, this.y + value);
     },
 
