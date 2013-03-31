@@ -34,11 +34,10 @@ SI.bind = function (fn, obj) {
  * @returns {boolean}
  */
 SI.detectColision = function (firsObj, secondObj) {
-    if ((firsObj.getPositionY() + firsObj.height) > secondObj.getPositionY()
-        && firsObj.getPositionY() < (secondObj.getPositionY() + secondObj.height)
-        && (firsObj.getPositionX() + firsObj.width) > secondObj.getPositionX()
-        && firsObj.getPositionX() < (secondObj.getPositionX() + secondObj.width)) {
-        console.log("bah!");
+    if ((firsObj.getPositionY() + firsObj.height) > secondObj.getPositionY() &&
+        firsObj.getPositionY() < (secondObj.getPositionY() + secondObj.height) &&
+        (firsObj.getPositionX() + firsObj.width) > secondObj.getPositionX() &&
+        firsObj.getPositionX() < (secondObj.getPositionX() + secondObj.width)) {
         return true;
     }
 

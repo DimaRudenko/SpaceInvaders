@@ -1,3 +1,8 @@
+/**
+ * Класс корабля игрока
+ *
+ *
+ */
 SI.Ship = SI.Sprite.extend({
     key: {
         LEFT: 65,  // key A [97]
@@ -32,6 +37,7 @@ SI.Ship = SI.Sprite.extend({
         return this;
     },
 
+    // Простите за такую подписку на клавиши :(
     keySetState: function (e) {
         if (e.keyCode === this.key.LEFT) {
             delete this.keyPressedList[this.key.RIGHT];

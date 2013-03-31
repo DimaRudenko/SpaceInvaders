@@ -1,25 +1,40 @@
 var aliens = [],
     ship,
-    scene;
+    scene,
+    gameSpeed = 1,
+    currentWay = 'left';
 
 
 initGame();
 
+
+// главная петля игры
 scene.gameLoop(function (scene) {
     stats.begin();
-    var context = scene.context;
 
+    var context = scene.context;
     context.beginPath();
     context.rect(0, 0, this.width, this.height);
     context.closePath();
     context.fill();
-    SI.detectColision(alien, ship);
 
     for (var i = 0, leng = aliens.length; i < leng; i++) {
+        var alienWay = aliens[i].checkWay();
+        if (currentWay !== alienWay) {
+            currentWay = alienWay;
+//            aliens[i].setWay(currentWay);
+            console.log(alienWay);
+          //  aliens[i].setWay(currentWay);
+
+        }
+        console.log(alienWay);
+        //console.log(alienWay);
+        aliens[i].step();
         aliens[i].update();
     }
-    // alien.update();
+
     ship.update();
+
 
     stats.end();
 });
@@ -74,9 +89,6 @@ function initAliens() {
 function initGame() {
 
     scene = SI.scene("screen");
-
-    alien = SI.sprite("images/alien_2.png", 40, 40).addTo(scene)
-        .setPosition(scene.getWidth() / 2 - 60, scene.getHeight() / 2);
 
     ship = SI.ship().addTo(scene);
 

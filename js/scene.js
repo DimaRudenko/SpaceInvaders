@@ -3,7 +3,7 @@ var SI = SI || {};
 SI.Scene = function (canvas) {
     canvas = canvas || "canvas";
     this.canvas = document.getElementById(canvas);
-    var context = this.context = this.canvas.getContext('2d');
+    this.context = this.canvas.getContext('2d');
 
     this.width = this.canvas.width || 800;
     this.height = this.canvas.height || 600;
