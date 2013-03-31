@@ -83,13 +83,14 @@ SI.Ship = SI.Sprite.extend({
         } else {
             this.bullet.setPosition(this.getPositionX(), this.getPositionY() - 24);
         }
-        this.bullet.draw();
+        this.bullet.update();
     },
 
     update: function () {
         this.keyEventHandler();
         this.draw();
         this.bulletUpdateState();
+        this.debbug();
     }
 
 });

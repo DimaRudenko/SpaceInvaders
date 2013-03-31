@@ -3,7 +3,6 @@ SI.Sprite = SI.Class.extend({
 
     init: function (src, width, height) {
         this.initImage(src, width, height);
-        this.debbuger = false;
         return this;
     },
 
@@ -56,9 +55,7 @@ SI.Sprite = SI.Class.extend({
 
     update: function () {
         this.draw();
-        if (this.debbuger) {
-            this.debbug();
-        }
+        this.debbug();
     },
 
     debbug: function () {

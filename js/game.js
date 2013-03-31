@@ -19,7 +19,9 @@ scene.gameLoop(function (scene) {
     context.closePath();
     context.fill();
 
+    // detectAlienVSBulletColision();
     updateAliensGroup();
+
     ship.update();
 
     stats.end();
@@ -30,9 +32,9 @@ function initGame() {
     scene = SI.scene("screen");
     ship = SI.ship().addTo(scene);
     initAliens();
-    timer = setInterval(function () {
-        console.log("aaa");
-    }, gameSpeed);
+}
+
+function restartGame() {
 
 }
 
@@ -48,7 +50,7 @@ function initAliens() {
     // корабли третьего типа
     for (var x = 0; x < 6; x++) {
         for (var y = 0; y < 1; y++) {
-            var posX = startPositionX + (50 * x);
+            var posX = startPositionX + (60 * x);
             var posY = startPositionY + (50 * y);
 
             var alien = SI.alien(3)
@@ -61,7 +63,7 @@ function initAliens() {
     // корабли второго типа
     for (var x = 0; x < 6; x++) {
         for (var y = 0; y < 1; y++) {
-            var posX = startPositionX + (50 * x);
+            var posX = startPositionX + (60 * x);
             var posY = startPositionY + 40 + (50 * y);
 
             var alien = SI.alien(2)
@@ -74,7 +76,7 @@ function initAliens() {
     // корабли второго типа
     for (var x = 0; x < 6; x++) {
         for (var y = 0; y < 1; y++) {
-            var posX = startPositionX + (50 * x);
+            var posX = startPositionX + (60 * x);
             var posY = startPositionY + 80 + (50 * y);
 
             var alien = SI.alien(1)
@@ -111,9 +113,17 @@ function updateAliensGroup() {
             scene.pauseGame();
         }
 
-        // колизия "чужой" <--> "пуля"
-        if (SI.detectColision(aliens[i], ship.bullet)) {
-            scene.pauseGame();
+
+        // если пуля в полете
+        if (ship.fire) {
+            // колизия "чужой" <--> "пуля"
+            if (SI.detectColision(aliens[i], ship.bullet)) {
+                aliens.splice(i, 1);
+                --leng;
+                ship.bullet.setPosition(ship.getPositionX(), ship.getPositionY() - 24);
+                ship.fire = false;
+                return;
+            }
         }
         aliens[i].update();
     }
