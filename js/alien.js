@@ -2,12 +2,16 @@ SI.Alien = SI.Sprite.extend({
 
     init: function (type) {
         this.initImage('images/alien_' + type + '.png', 40, 40);
-
-        // начальное направление движения
-        this.way = "left";
-        this.speed = 3;
+        this.way = "left";// начальное направление движения
+        this.speed = 1;
         return this;
     },
+
+    setSpeed: function (speed) {
+        this.speed = speed;
+        return this;
+    },
+
 
     /**
      * задаем направление движение корабля
@@ -33,7 +37,6 @@ SI.Alien = SI.Sprite.extend({
         return  this.way;
     },
 
-
     step: function () {
         if (this.way === 'left') {
             this.moveLeft(this.speed);
@@ -43,7 +46,6 @@ SI.Alien = SI.Sprite.extend({
     },
 
     update: function () {
-
         this.step();
         this.draw();
         this.debbug();
