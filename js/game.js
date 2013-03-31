@@ -1,84 +1,85 @@
+var aliens = [],
+    ship,
+    scene;
 
 
-var SI = SI ||{};
+initGame();
 
-SP.prototype = {
+scene.gameLoop(function (scene) {
+    stats.begin();
+    var context = scene.context;
 
-    gameLoop: function (callback) {
-        this.lastGameLoopFrame = new Date().getTime();
-        this.callback = callback;
-        // Short circuit the loop check in case multiple scenes
-        // are staged immediately
-        this.loop = true;
+    context.beginPath();
+    context.rect(0, 0, this.width, this.height);
+    context.closePath();
+    context.fill();
+    SI.detectColision(alien, ship);
 
-        // Keep track of the frame we are on (so that animations can be synced
-        // to the next frame)
-        this._loopFrame = 0;
+    for (var i = 0, leng = aliens.length; i < leng; i++) {
+        aliens[i].update();
+    }
+    // alien.update();
+    ship.update();
 
-        window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
-
-    },
-
-
-    gameLoopCallbackWrapper: function () {
-        var now = new Date().getTime();
-        this._loopFrame++;
-        this.loop = window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
-        var dt = now - this.lastGameLoopFrame;
-        if(dt > this.frameTimeLimit) { dt = this.frameTimeLimit; }
-        this.callback.apply(this, [dt / 1000]);
-        this.lastGameLoopFrame = now;
-    },
+    stats.end();
+});
 
 
-    pauseGame: function () {
-        if (this.loop) {
-            window.cancelRequestAnimFrame(this.loop);
-        }
-        this.loop = null;
-    },
+function initAliens() {
 
-    unpauseGame: function () {
-        if (!this.loop) {
-            this.lastGameLoopFrame = new Date().getTime();
-            this.loop = window.requestAnimationFrame(this.gameLoopCallbackWrapper.bind(this));
+    var startPositionX = scene.getWidth() / 2;
+    var startPositionY = 70;
+
+    // корабли третего типа
+    for (var x = 0; x < 6; x++) {
+        for (var y = 0; y < 1; y++) {
+            var posX = startPositionX + (50 * x);
+            var posY = startPositionY + (50 * y);
+
+            var alien = SI.alien(3)
+                .addTo(scene)
+                .setPosition(posX, posY);
+            aliens.push(alien);
         }
     }
 
+    // корабли второго типа
+    for (var x = 0; x < 6; x++) {
+        for (var y = 0; y < 1; y++) {
+            var posX = startPositionX + (50 * x);
+            var posY = startPositionY + 40 + (50 * y);
 
-};
+            var alien = SI.alien(2)
+                .addTo(scene)
+                .setPosition(posX, posY);
+            aliens.push(alien);
+        }
+    }
 
-/**
- * Provides requestAnimationFrame in a cross browser way.
- * @author paulirish  http://paulirish.com/
- */
+    // корабли второго типа
+    for (var x = 0; x < 6; x++) {
+        for (var y = 0; y < 1; y++) {
+            var posX = startPositionX + (50 * x);
+            var posY = startPositionY + 80 + (50 * y);
 
-if (!window.requestAnimationFrame) {
+            var alien = SI.alien(1)
+                .addTo(scene)
+                .setPosition(posX, posY);
+            aliens.push(alien);
+        }
+    }
 
-    window.requestAnimationFrame = (function () {
-
-        return window.webkitRequestAnimationFrame ||
-            window.mozRequestAnimationFrame ||
-            window.oRequestAnimationFrame ||
-            window.msRequestAnimationFrame ||
-            function (/* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
-
-                window.setTimeout(callback, 1000 / 60);
-
-            };
-
-    })();
 }
 
-if (!window.cancelRequestAnimFrame) {
+function initGame() {
 
-    window.cancelRequestAnimFrame = (function () {
+    scene = SI.scene("screen");
 
-        return window.cancelAnimationFrame ||
-            window.webkitCancelRequestAnimationFrame ||
-            window.mozCancelRequestAnimationFrame ||
-            window.oCancelRequestAnimationFrame ||
-            window.msCancelRequestAnimationFrame ||
-            clearTimeout;
-    })();
+    alien = SI.sprite("images/alien_2.png", 40, 40).addTo(scene)
+        .setPosition(scene.getWidth() / 2 - 60, scene.getHeight() / 2);
+
+    ship = SI.ship().addTo(scene);
+
+    initAliens();
+
 }

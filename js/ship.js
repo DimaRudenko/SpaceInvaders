@@ -5,7 +5,7 @@ SI.Ship = SI.Sprite.extend({
         SHOT: 32   // key spacebar
     },
 
-    speed: 6,
+    speed: 2,
     bulletSpeed: 15,
     keyPressedList: {},
 
