@@ -48,7 +48,13 @@ SI.Sprite = SI.Class.extend({
 
     addTo: function (scene) {
         this._scene = scene;
+        this.setPosition(scene.getWidth()/2,scene.getHeight()/2);
+        this.draw();
         return this;
+    },
+
+    update: function(){
+        this.draw();
     }
 
 });

@@ -13,6 +13,7 @@
     <script src="js/scene.js"></script>
     <script src="js/sprite.js"></script>
     <script src="js/ship.js"></script>
+    <script src="js/bullet.js"></script>
 
 
 </head>
@@ -34,9 +35,12 @@
 
     var scene = SI.scene("screen");
 
-    var sprite = SI.sprite("images/alien_1.png", 40, 40).addTo(scene);
+    var alien = SI.sprite("images/alien_1.png", 40, 40).addTo(scene);
     var ship = SI.ship().addTo(scene);
-    ship.setPosition(scene.getWidth() / 2, scene.getHeight() - 50);
+
+
+
+
 
     scene.gameLoop(function (scene) {
         stats.begin();
@@ -47,9 +51,10 @@
         context.closePath();
         context.fill();
 
-        sprite.setPosition(scene.getWidth() / 2, 100)
+        alien.setPosition(scene.getWidth() / 2, 100)
                 .draw();
-        ship.draw();
+
+        ship.update();
 
         stats.end();
     });
