@@ -7,14 +7,6 @@ SI.Scene = function (canvas) {
 
     this.width = this.canvas.width || 800;
     this.height = this.canvas.height || 600;
-
-
-    context.fillStyle = '#000';
-    context.clearRect(0, 0, this.width, this.height);
-    context.beginPath();
-    context.rect(0, 0, this.width, this.height);
-    context.closePath();
-    context.fill();
 };
 
 SI.Scene.prototype = {

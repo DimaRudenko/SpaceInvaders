@@ -3,14 +3,9 @@ SI.Sprite = SI.Class.extend({
 
     init: function (src, width, height) {
         this.initImage(src, width, height);
+        return this;
     },
-    /**
-     * Initialize sprite image and size
-     *
-     * @param src
-     * @param width
-     * @param height
-     */
+
     initImage: function (src, width, height) {
         this.image = new Image();
         this.image.src = src;
@@ -18,18 +13,24 @@ SI.Sprite = SI.Class.extend({
         this.height = height;
     },
 
-    setPosition: function (x, y) {
-        this.x = x;
-        this.y = y;
-    },
-
-
     draw: function () {
         var x = this.x - (this.width / 2);
         var y = this.y - (this.height / 2);
-        this.context.drawImage(this.image, x, y);
+        this._scene.context.drawImage(this.image, x, y);
     },
 
+    setPosition: function (x, y) {
+        this.x = x;
+        this.y = y;
+        return this;
+    },
+
+    getPositionX: function () {
+        return this.x;
+    },
+    getPositionY: function () {
+        return this.y;
+    },
 
     moveLeft: function (value) {
         this.setPosition(this.x - value, this.y);
@@ -42,11 +43,12 @@ SI.Sprite = SI.Class.extend({
 
 
     moveFront: function (value) {
-        this.setPosition(this.x, this.y + (value * 3));
+        this.setPosition(this.x, this.y + value);
     },
 
     addTo: function (scene) {
-        this.context = scene.context;
+        this._scene = scene;
+        return this;
     }
 
 });
