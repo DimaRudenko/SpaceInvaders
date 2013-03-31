@@ -3,6 +3,7 @@ SI.Sprite = SI.Class.extend({
 
     init: function (src, width, height) {
         this.initImage(src, width, height);
+        this.debbuger = false;
         return this;
     },
 
@@ -48,13 +49,23 @@ SI.Sprite = SI.Class.extend({
 
     addTo: function (scene) {
         this._scene = scene;
-        this.setPosition(scene.getWidth()/2,scene.getHeight()/2);
+        this.setPosition(scene.getWidth() / 2, scene.getHeight() / 2);
         this.draw();
         return this;
     },
 
-    update: function(){
+    update: function () {
         this.draw();
+        if (this.debbuger) {
+            this.debbug();
+        }
+    },
+
+    debbug: function () {
+        var context = this._scene.context;
+        context.strokeStyle = '#f00'; // red
+        context.lineWidth = 1;
+        context.strokeRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
     }
 
 });

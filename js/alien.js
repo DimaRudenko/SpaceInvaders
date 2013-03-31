@@ -5,7 +5,7 @@ SI.Alien = SI.Sprite.extend({
 
         // начальное направление движения
         this.way = "left";
-        this.speed = 1;
+        this.speed = 3;
         return this;
     },
 
@@ -22,7 +22,7 @@ SI.Alien = SI.Sprite.extend({
      * - исли столкнулись - меняем направление движения
      */
     checkWay: function () {
-        var side = 25; // расстояние по краям
+        var side = 20; // расстояние по краям
 
         if (this.getPositionX() <= side && this.way === "left") {
             this.setWay("right");
@@ -43,8 +43,10 @@ SI.Alien = SI.Sprite.extend({
     },
 
     update: function () {
+
         this.step();
         this.draw();
+        this.debbug();
     }
 
 });

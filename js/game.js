@@ -1,8 +1,9 @@
 var aliens = [],
     ship,
     scene,
-    gameSpeed = 1000,
-    currentWay = 'left';
+    gameSpeed = 2000,
+    currentWay = 'left',
+    timer;
 
 
 initGame();
@@ -25,10 +26,24 @@ scene.gameLoop(function (scene) {
 });
 
 
+function initGame() {
+    scene = SI.scene("screen");
+    ship = SI.ship().addTo(scene);
+    initAliens();
+    timer = setInterval(function () {
+        console.log("aaa");
+    }, gameSpeed);
+
+}
+
+
+/**
+ * Инициализация "чужых" кораблей
+ */
 function initAliens() {
 
     var startPositionX = scene.getWidth() / 2;
-    var startPositionY = 70;
+    var startPositionY = 40;
 
     // корабли третьего типа
     for (var x = 0; x < 6; x++) {
@@ -68,9 +83,13 @@ function initAliens() {
             aliens.push(alien);
         }
     }
-
 }
 
+/**
+ * Функция для смены направления всех "чужих" пачкой при касании бортика
+ * попутно смещает вниз все корабли
+ *
+ */
 function setWayAliensGroup(way) {
     for (var i = 0, leng = aliens.length; i < leng; i++) {
         aliens[i].setWay(way);
@@ -86,13 +105,17 @@ function updateAliensGroup() {
             currentWay = alienWay;
             setWayAliensGroup(currentWay);
         }
+
+        // колизия "чужой" <--> "игрок"
+        if (SI.detectColision(aliens[i], ship)) {
+            scene.pauseGame();
+        }
+
+        // колизия "чужой" <--> "пуля"
+        if (SI.detectColision(aliens[i], ship.bullet)) {
+            scene.pauseGame();
+        }
         aliens[i].update();
     }
 }
 
-
-function initGame() {
-    scene = SI.scene("screen");
-    ship = SI.ship().addTo(scene);
-    initAliens();
-}
