@@ -18,7 +18,7 @@ SI.Ship = SI.Sprite.extend({
         this.initImage('images/player.png', 56, 40);
         this.bullet = SI.bullet();
         this.fire = false;
-
+        this.name = "ship";
         window.addEventListener('keydown', SI.bind(this.keySetState, this), false);
         window.addEventListener('keyup', SI.bind(this.keyRemoveFromList, this), false);
 
@@ -88,8 +88,8 @@ SI.Ship = SI.Sprite.extend({
 
     update: function () {
         this.keyEventHandler();
-        this.draw();
         this.bulletUpdateState();
+        this.draw();
         this.debbug();
     }
 

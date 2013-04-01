@@ -8,7 +8,7 @@ var aliens = [],
 initGame();
 
 function initGame() {
-    scene = SI.scene("screen");
+    scene = SI.scene("canvas");
     ship = SI.ship().addTo(scene);
     initAliens();
     scene.gameLoop(gameStart);
@@ -104,6 +104,7 @@ function updateAliensGroup() {
         if (ship.fire) {
             // колизия "чужой" <--> "пуля"
             if (SI.detectColision(aliens[i], ship.bullet)) {
+                aliens[i].deleteDOM(); //debug
                 aliens.splice(i, 1);
                 --leng;
                 ship.bullet.setPosition(ship.getPositionX(), ship.getPositionY() - 24);

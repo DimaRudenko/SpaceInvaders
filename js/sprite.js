@@ -3,6 +3,7 @@ SI.Sprite = SI.Class.extend({
 
     init: function (src, width, height) {
         this.initImage(src, width, height);
+        this.name = 'sprite';
         return this;
     },
 
@@ -50,6 +51,7 @@ SI.Sprite = SI.Class.extend({
         this._scene = scene;
         this.setPosition(scene.getWidth() / 2, scene.getHeight() / 2);
         this.draw();
+        this.initDOM();
         return this;
     },
 
@@ -63,6 +65,31 @@ SI.Sprite = SI.Class.extend({
         context.strokeStyle = '#f00'; // red
         context.lineWidth = 1;
         context.strokeRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
+        this.updateDOM();
+    },
+    /**
+     * DOM-proxy для тестов
+     */
+    initDOM: function () {
+        var domElement = this.domElement = document.createElement('img');
+        domElement.id = this.name;
+        domElement.className = this.name;
+
+        domElement.style.width =  this.width + 'px;';
+        domElement.style.height = this.height + 'px';
+        domElement.style.position = 'absolute';
+        domElement.src = this.image.src;
+
+        this._scene.domElement.appendChild(domElement);
+    },
+
+    updateDOM: function () {
+        this.domElement.style.left = this.x - this.width / 2 + 'px';
+        this.domElement.style.top = this.y - this.height / 2 + 'px';
+    },
+
+    deleteDOM: function () {
+        this._scene.domElement.removeChild(this.domElement);
     }
 
 });

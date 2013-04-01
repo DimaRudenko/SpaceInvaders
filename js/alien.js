@@ -2,6 +2,7 @@ SI.Alien = SI.Sprite.extend({
 
     init: function (type) {
         this.initImage('images/alien_' + type + '.png', 40, 40);
+        this.name ='bug';
         this.way = "left";// начальное направление движения
         this.speed = 1;
         return this;

@@ -7,6 +7,18 @@ SI.Scene = function (canvas) {
 
     this.width = this.canvas.width || 800;
     this.height = this.canvas.height || 600;
+
+    /**
+     * DOM-proxy
+     * @type {HTMLElement}
+     */
+    var domElement = this.domElement = document.createElement('DIV');
+    domElement.id = "screen";
+    domElement.style.width = this.width + 'px';
+    domElement.style.height = this.height + 'px';
+//    domElement.style.position = 'relative';
+    document.body.appendChild(domElement);
+
 };
 
 SI.Scene.prototype = {

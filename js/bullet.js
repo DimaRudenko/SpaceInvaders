@@ -4,6 +4,7 @@ SI.Bullet = SI.Sprite.extend({
 
     init: function () {
         this.initImage('images/bullet.png', 10, 10);
+        this.name = 'shell';
         return this;
     },
 
