@@ -78,8 +78,7 @@ SI.Sprite = SI.Class.extend({
         domElement.style.width =  this.width + 'px;';
         domElement.style.height = this.height + 'px';
         domElement.style.position = 'absolute';
-        domElement.src = this.image.src;
-
+        domElement.style.content = "url('"+ this.image.src + "')";
         this._scene.domElement.appendChild(domElement);
     },
 
