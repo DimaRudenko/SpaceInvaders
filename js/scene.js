@@ -14,8 +14,8 @@ SI.Scene = function (canvas) {
      */
     var domElement = this.domElement = document.createElement('DIV');
     domElement.id = "screen";
-    domElement.style.width = this.width + 'px';
-    domElement.style.height = this.height + 'px';
+    domElement.width = this.width + 'px';
+    domElement.height = this.height + 'px';
 //    domElement.style.position = 'relative';
     document.body.appendChild(domElement);
 

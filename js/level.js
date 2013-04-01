@@ -18,7 +18,7 @@ function gameStart(scene) {
     context.font = 'bold 10pt Arial';
     context.fillStyle = "rgba(211, 211, 211, 1)";
     context.fillText('Level:  ' + level, 20, 20);
-    context.fillText('Score:  ' + score, scene.getWidth()-80, 20);
+    context.fillText('Score:  ' + score, scene.getWidth() - 80, 20);
 
     if (aliens.length === 0) {
         levelUp();
@@ -40,7 +40,7 @@ function gameOver() {
         context.textAlign = 'center';
         context.font = "bold 30pt Arial";
         context.strokeText("Game Over", scene.getWidth() / 2, scene.getHeight() / 2);
-        context.strokeText("You score: "+ score, scene.getWidth() / 2, scene.getHeight() / 2 +40);
+        context.strokeText("You score: " + score, scene.getWidth() / 2, scene.getHeight() / 2 + 40);
         context.font = '10pt Arial';
         context.strokeText('press start  ', scene.getWidth() / 2, scene.getHeight() / 2 + 60);
 
