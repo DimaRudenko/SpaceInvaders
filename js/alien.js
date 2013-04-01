@@ -13,7 +13,6 @@ SI.Alien = SI.Sprite.extend({
         return this;
     },
 
-
     /**
      * задаем направление движение корабля
      *  left or right
@@ -49,6 +48,7 @@ SI.Alien = SI.Sprite.extend({
     update: function () {
         this.step();
         this.draw();
+        this.updateDOM();
         this.debbug();
     }
 

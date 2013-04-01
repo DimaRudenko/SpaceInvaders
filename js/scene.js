@@ -7,18 +7,8 @@ SI.Scene = function (canvas) {
 
     this.width = this.canvas.width || 800;
     this.height = this.canvas.height || 600;
-
-    /**
-     * DOM-proxy
-     * @type {HTMLElement}
-     */
-    var domElement = this.domElement = document.createElement('DIV');
-    domElement.id = "screen";
-    domElement.width = this.width + 'px';
-    domElement.height = this.height + 'px';
-//    domElement.style.position = 'relative';
-    document.body.appendChild(domElement);
-
+    this.debugg = true;
+    this.versionDOM = true;
 };
 
 SI.Scene.prototype = {
@@ -55,6 +45,34 @@ SI.Scene.prototype = {
         if (!this.loop) {
             this.loop = window.requestAnimationFrame(this.gameLoopCallback.bind(this));
         }
+    },
+
+    /**
+     * DOM версия рендера
+     * @type {HTMLElement}
+     */
+    initDOM: function () {
+        if(this.versionDOM){
+            var domElement = this.domElement = document.createElement('DIV');
+            domElement.id = "screen";
+            domElement.style.width = this.width + 'px';
+            domElement.style.height = this.height + 'px';
+            domElement.style.position = 'absolute';
+            domElement.style.background = "black";
+            var wrapper = document.getElementById("wrapper");
+            wrapper.appendChild(domElement);
+        }
+    },
+
+    /**
+     *
+     * Детектим ИЕ8
+     */
+    detectIE: function () {
+        if (navigator.userAgent.match(/MSIE\s(?!8.0)/)) {
+            return true;
+        }
+        return false;
     }
 };
 

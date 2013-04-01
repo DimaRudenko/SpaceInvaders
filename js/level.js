@@ -23,6 +23,7 @@ function gameStart(scene) {
     if (aliens.length === 0) {
         levelUp();
     }
+
     updateAliensGroup();
     ship.update();
 
@@ -46,4 +47,11 @@ function gameOver() {
         context.strokeText('press start  ', scene.getWidth() / 2, scene.getHeight() / 2 + 60);
 
     });
+
+    if (scene.versionDOM) {
+        deleteDomAliensGroup();
+        ship.deleteDOM();
+        ship.bullet.deleteDOM();
+        alert("Game Over\n You score:" + score + "");
+    }
 }

@@ -50,45 +50,56 @@ SI.Sprite = SI.Class.extend({
     addTo: function (scene) {
         this._scene = scene;
         this.setPosition(scene.getWidth() / 2, scene.getHeight() / 2);
-        this.draw();
         this.initDOM();
+        this.draw();
+
         return this;
     },
 
     update: function () {
         this.draw();
+        this.updateDOM();
         this.debbug();
     },
 
     debbug: function () {
-        var context = this._scene.context;
-        context.strokeStyle = '#f00'; // red
-        context.lineWidth = 1;
-        context.strokeRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
-        this.updateDOM();
+        if (this._scene.debbug) {
+            var context = this._scene.context;
+            context.strokeStyle = '#f00'; // red
+            context.lineWidth = 1;
+            context.strokeRect(this.x - this.width / 2, this.y - this.height / 2, this.width, this.height);
+        }
     },
+
     /**
-     * DOM-proxy для тестов
+     * DOM версии для IE8
      */
     initDOM: function () {
-        var domElement = this.domElement = document.createElement('img');
-        domElement.id = this.name;
-        domElement.className = this.name;
+        if (this._scene.versionDOM) {
+            var domElement = this.domElement = document.createElement('img');
+            domElement.id = this.name;
+            domElement.className = this.name;
 
-        domElement.style.width =  this.width + 'px;';
-        domElement.style.height = this.height + 'px';
-        domElement.style.position = 'absolute';
-        domElement.style.content = "url('"+ this.image.src + "')";
-        this._scene.domElement.appendChild(domElement);
+            domElement.style.width = this.width + 'px;';
+            domElement.style.height = this.height + 'px';
+            domElement.style.position = 'absolute';
+            domElement.style.content = "url('" + this.image.src + "')";
+            this._scene.domElement.appendChild(domElement);
+        }
+
     },
 
     updateDOM: function () {
-        this.domElement.style.left = this.x - this.width / 2 + 'px';
-        this.domElement.style.top = this.y - this.height / 2 + 'px';
+        if (this._scene.versionDOM) {
+            this.domElement.style.left = this.x - this.width / 2 + 'px';
+            this.domElement.style.top = this.y - this.height / 2 + 'px';
+        }
     },
 
     deleteDOM: function () {
-        this._scene.domElement.removeChild(this.domElement);
+        if (this._scene.versionDOM && document.getElementById(this.name)) {
+            this._scene.domElement.removeChild(this.domElement);
+        }
     }
 
 });

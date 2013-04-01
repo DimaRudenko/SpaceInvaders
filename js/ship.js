@@ -29,11 +29,10 @@ SI.Ship = SI.Sprite.extend({
         this.context = scene.context;
         this._scene = scene;
         this.setPosition(scene.getWidth() / 2, scene.getHeight() - 50);
-
-
         this.bullet.addTo(this._scene);
         this.bullet.setPosition(this.getPositionX(), this.getPositionY() - 24);
-
+        this.initDOM();
+        this.draw();
         return this;
     },
 
@@ -90,6 +89,7 @@ SI.Ship = SI.Sprite.extend({
         this.keyEventHandler();
         this.bulletUpdateState();
         this.draw();
+        this.updateDOM();
         this.debbug();
     }
 

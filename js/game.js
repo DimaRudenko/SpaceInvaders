@@ -2,13 +2,14 @@ var aliens = [],
     ship,
     scene,
     currentWay = 'left',
-    level = 1,
+    level = 20,
     score=0;
 
 initGame();
 
 function initGame() {
     scene = SI.scene("canvas");
+    scene.initDOM();
     ship = SI.ship().addTo(scene);
     initAliens();
     scene.gameLoop(gameStart);
@@ -117,3 +118,8 @@ function updateAliensGroup() {
     }
 }
 
+function deleteDomAliensGroup(){
+    for (var i = 0, leng = aliens.length; i < leng; i++) {
+        aliens[i].deleteDOM();
+    }
+}
