@@ -40,7 +40,8 @@ function gameOver() {
         context.textAlign = 'center';
         context.font = "bold 30pt Arial";
         context.strokeText("Game Over", scene.getWidth() / 2, scene.getHeight() / 2);
-        context.strokeText("You score: " + score, scene.getWidth() / 2, scene.getHeight() / 2 + 40);
+        context.font = "bold 12pt Arial";
+        context.strokeText("You score: " + score, scene.getWidth() / 2, scene.getHeight() / 2 + 30);
         context.font = '10pt Arial';
         context.strokeText('press start  ', scene.getWidth() / 2, scene.getHeight() / 2 + 60);
 
