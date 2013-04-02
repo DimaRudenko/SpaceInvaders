@@ -30,4 +30,4 @@ Space Invaders for UA Web Challenge 2013
   - Тане Бордиян  за поддержку.
 
    [canvas версия]: http://dimarudenko.github.com/SpaceInvaders/canvasversion/index.html
-   [спрайт- версия]: http://dimarudenko.github.com/SpaceInvaders/spriteversion/index.html
+   [DOM- версия]: http://dimarudenko.github.com/SpaceInvaders/spriteversion/index.html
