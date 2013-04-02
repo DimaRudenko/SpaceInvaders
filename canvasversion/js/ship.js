@@ -15,7 +15,7 @@ SI.Ship = SI.Sprite.extend({
     keyPressedList: {},
 
     init: function () {
-        this.initImage('images/player.png', 56, 40);
+        this.initImage('../images/player.png', 56, 40);
         this.bullet = SI.bullet();
         this.fire = false;
         this.name = "ship";

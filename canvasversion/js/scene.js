@@ -8,7 +8,7 @@ SI.Scene = function (canvas) {
     this.width = this.canvas.width || 800;
     this.height = this.canvas.height || 600;
     this.debugg = true;
-    this.versionDOM = true;
+    this.versionDOM = false;
 };
 
 SI.Scene.prototype = {
@@ -67,6 +67,8 @@ SI.Scene.prototype = {
     /**
      *
      * Детектим ИЕ8
+     *
+     *  ..но нуего в баню. сделать отдельную версию без канваса
      */
     detectIE: function () {
         if (navigator.userAgent.match(/MSIE\s(?!8.0)/)) {

@@ -1,18 +1,107 @@
-var aliens = [],
-    ship,
-    scene,
-    currentWay = 'left',
-    level = 20,
-    score=0;
 
-initGame();
+(function initGame() {
 
-function initGame() {
+    aliens = [];
+    ship = {};
+    scene = {};
+    currentWay = 'left';
+    level = 1;
+    score = 0;
+    pause = false;
+    gameover = false;
+    restart = false;
+    runGame = false;
+
     scene = SI.scene("canvas");
     scene.initDOM();
+
+    var context = scene.context;
+
     ship = SI.ship().addTo(scene);
     initAliens();
-    scene.gameLoop(gameStart);
+
+    updateAliensGroup();
+    ship.update();
+    context.fillStyle = "rgba(0, 0, 0, 1)";
+    context.fillRect(0, 0, scene.width, scene.height);
+    context.strokeStyle = 'white';
+    context.textAlign = 'center';
+    context.font = '20pt Arial';
+    context.strokeText('Press Start button ', scene.getWidth() / 2, scene.getHeight() / 2 );
+}());
+
+
+/**
+ * новый уровень
+ */
+function levelUp() {
+    level++;
+    initAliens();
+}
+
+function GameStart() {
+    scene.gameLoop(function (scene) {
+        stats.begin();
+
+        var context = scene.context;
+        context.fillStyle = "rgba(0, 0, 0, 1)";
+        context.fillRect(0, 0, this.width, this.height);
+
+
+        context.font = 'bold 10pt Arial';
+        context.fillStyle = "rgba(211, 211, 211, 1)";
+        context.fillText('Level:  ' + level, 20, 20);
+        context.fillText('Score:  ' + score, scene.getWidth() - 80, 20);
+
+        if (aliens.length === 0) {
+            levelUp();
+        }
+
+        updateAliensGroup();
+        ship.update();
+
+        stats.end();
+    });
+}
+
+
+function GameOver() {
+    scene.gameLoop(function (scene) {
+        var context = scene.context;
+        context.fillStyle = "rgba(0, 0, 0, 1)";
+        context.fillRect(0, 0, this.width, this.height);
+
+        context.strokeStyle = 'white';
+        context.textAlign = 'center';
+        context.font = "bold 30pt Arial";
+        context.strokeText("Game Over", scene.getWidth() / 2, scene.getHeight() / 2);
+        context.font = "bold 12pt Arial";
+        context.strokeText("You score: " + score, scene.getWidth() / 2, scene.getHeight() / 2 + 30);
+        context.font = '10pt Arial';
+        context.strokeText('press start button ', scene.getWidth() / 2, scene.getHeight() / 2 + 60);
+
+    });
+    if (scene.versionDOM) {
+        deleteDomAliensGroup();
+        ship.deleteDOM();
+        ship.bullet.deleteDOM();
+        alert("Game Over\n You score:" + score + "");
+    }
+}
+
+
+function GamePause() {
+    if (pause) {
+        scene.unpauseGame();
+        pause = false;
+    } else {
+        scene.pauseGame();
+        pause = true;
+    }
+
+}
+function GameReset(){
+    location.reload();
 }
 
 /**
@@ -93,12 +182,12 @@ function updateAliensGroup() {
         }
 
         if (aliens[i].getPositionY() + aliens[i].height / 2 >= scene.getHeight()) {
-            gameOver();
+            GameOver();
         }
 
         // колизия "чужой" <--> "игрок"
         if (SI.detectColision(aliens[i], ship)) {
-            gameOver();
+            GameOver();
         }
 
         // если пуля в полете
@@ -110,7 +199,7 @@ function updateAliensGroup() {
                 --leng;
                 ship.bullet.setPosition(ship.getPositionX(), ship.getPositionY() - 24);
                 ship.fire = false;
-                score +=10;
+                score += 10;
                 return;
             }
         }
@@ -118,7 +207,7 @@ function updateAliensGroup() {
     }
 }
 
-function deleteDomAliensGroup(){
+function deleteDomAliensGroup() {
     for (var i = 0, leng = aliens.length; i < leng; i++) {
         aliens[i].deleteDOM();
     }

@@ -62,6 +62,9 @@ SI.Sprite = SI.Class.extend({
         this.debbug();
     },
 
+    /**
+     * Обводим спрайт рамкой, для визуальной проверки коллизий
+     */
     debbug: function () {
         if (this._scene.debbug) {
             var context = this._scene.context;
@@ -72,7 +75,7 @@ SI.Sprite = SI.Class.extend({
     },
 
     /**
-     * DOM версии для IE8
+     * DOM версия (для IE8)
      */
     initDOM: function () {
         if (this._scene.versionDOM) {
