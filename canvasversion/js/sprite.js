@@ -76,6 +76,7 @@ SI.Sprite = SI.Class.extend({
 
     /**
      * DOM версия (для IE8)
+     * в канвас версии не использую
      */
     initDOM: function () {
         if (this._scene.versionDOM) {

@@ -1,3 +1,9 @@
+/**
+ * Инициализация переменных для игры
+ * window, ибо IE
+ * @type {Array}
+ */
+
 window.aliens = [];
 window.ship = {};
 window.scene = {};
@@ -70,6 +76,11 @@ function GamePause() {
     }
 
 }
+
+/**
+ * Для сброса игры просто перезагружаем страницу
+ *
+ */
 function GameReset(){
     location.reload();
 }
@@ -110,7 +121,7 @@ function initAliens() {
         }
     }
 
-    // корабли второго типа
+    // корабли первого типа
     for (var x = 0; x < 8; x++) {
         for (var y = 0; y < 1; y++) {
             var posX = startPositionX - 60 + (60 * x);

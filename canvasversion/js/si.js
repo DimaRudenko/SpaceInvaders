@@ -1,9 +1,14 @@
-/*
+/**
  * Copyright (c) 2013, Dima Rudenko
  * uawebconf 2013
  */
 
-// Space Invaders namespace
+/**
+ * 
+ * Space Invaders namespace
+ *
+ */
+
 var SI = SI || {};
 
 SI.extend = function (obj, source) {
