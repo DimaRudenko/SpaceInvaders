@@ -1,10 +1,5 @@
-/**
- * Базовая единица игры.
- * Все игровые объекты экстендится от этого класса
- *
- * @type {*|void}
- */
 SI.Sprite = SI.Class.extend({
+
 
     init: function (src, width, height) {
         this.initImage(src, width, height);
@@ -81,6 +76,7 @@ SI.Sprite = SI.Class.extend({
 
     /**
      * DOM версия (для IE8)
+     * в канвас версии не использую
      */
     initDOM: function () {
         if (this._scene.versionDOM) {

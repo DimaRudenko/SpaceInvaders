@@ -1,10 +1,14 @@
+/**
+ * Класс корабля "чужих"
+ *
+ */
 SI.Alien = SI.Sprite.extend({
 
     init: function (type) {
         this.initImage('../images/alien_' + type + '.png', 40, 40);
         this.name ='bug';
         this.way = "left";// начальное направление движения
-        this.speed = 1;
+        this.speed = 1; // на сколько смещать вниз
         return this;
     },
 
@@ -15,7 +19,7 @@ SI.Alien = SI.Sprite.extend({
 
     /**
      * задаем направление движение корабля
-     *  left or right
+     *  left или right
      */
     setWay: function (way) {
         this.way = way;
@@ -23,7 +27,7 @@ SI.Alien = SI.Sprite.extend({
 
     /**
      * Проверяем столкновение с бортиком:
-     * - исли столкнулись - меняем направление движения
+     * - если столкнулись - меняем направление движения
      */
     checkWay: function () {
         var side = 20; // расстояние по краям
@@ -37,6 +41,9 @@ SI.Alien = SI.Sprite.extend({
         return  this.way;
     },
 
+    /**
+     * Один шаг игровой петли
+     */
     step: function () {
         if (this.way === 'left') {
             this.moveLeft(this.speed);
@@ -48,7 +55,6 @@ SI.Alien = SI.Sprite.extend({
     update: function () {
         this.step();
         this.draw();
-        this.updateDOM();
         this.debbug();
     }
 
