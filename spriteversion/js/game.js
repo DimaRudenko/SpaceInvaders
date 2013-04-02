@@ -128,7 +128,7 @@ function initAliens() {
 /**
  * Функция для смены направления всех "чужих" пачкой при касании бортика
  * попутно смещает вниз все корабли
- *
+ * @todo сделать перемещение сразу всей группы через div-врапер
  */
 function setWayAliensGroup(way) {
     for (var i = 0, leng = aliens.length; i < leng; i++) {
