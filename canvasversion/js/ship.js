@@ -5,9 +5,9 @@
  */
 SI.Ship = SI.Sprite.extend({
     key: {
-        LEFT: 65,  // key A [97]
-        RIGHT: 83, // key S [115]
-        SHOT: 32   // key spacebar
+        LEFT: 37,
+        RIGHT: 39,
+        SHOT: 32
     },
 
     speed: 2,

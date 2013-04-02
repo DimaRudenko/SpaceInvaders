@@ -4,7 +4,7 @@
  */
 
 /**
- * 
+ *
  * Space Invaders namespace
  *
  */
