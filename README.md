@@ -3,10 +3,10 @@ Space Invaders for UA Web Challenge 2013
 
 ## Описание
 
-    Реализовано две версии игры: canvas и DOM-версия
+Реализовано две версии игры: canvas и DOM-версия.
+[canvas версия][]
 
-     [Examples](http://mrdoob.github.com/three.js/) 
-     [спрайт- версия][]
+[спрайт- версия][]
 
 ### Запуск локально
 
