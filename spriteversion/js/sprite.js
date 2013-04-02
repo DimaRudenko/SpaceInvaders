@@ -84,7 +84,7 @@ SI.Sprite = SI.Class.extend({
             domElement.className = this.name;
             domElement.src = this.image.src;
             //   domElement.style.content = "url('" + this.image.src + "')";  только под хром
-            domElement.style.width = this.width + 'px;';
+            domElement.style.width = this.width + 'px';
             domElement.style.height = this.height + 'px';
             domElement.style.position = 'absolute';
 
