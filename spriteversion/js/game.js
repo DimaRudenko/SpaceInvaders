@@ -1,17 +1,16 @@
 
+aliens = [];
+ship = {};
+scene = {};
+currentWay = 'left';
+level = 1;
+score = 0;
+pause = false;
+gameover = false;
+restart = false;
+runGame = false;
+
 (function initGame() {
-
-    aliens = [];
-    ship = {};
-    scene = {};
-    currentWay = 'left';
-    level = 1;
-    score = 0;
-    pause = false;
-    gameover = false;
-    restart = false;
-    runGame = false;
-
     scene = SI.scene("canvas");
     scene.initDOM();
 
