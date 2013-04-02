@@ -1,13 +1,13 @@
-aliens = [];
-ship = {};
-scene = {};
-currentWay = 'left';
-level = 1;
-score = 0;
-pause = false;
-gameover = false;
-restart = false;
-runGame = false;
+window.aliens = [];
+window.ship = {};
+window.scene = {};
+window.currentWay = 'left';
+window.level = 1;
+window.score = 0;
+window.pause = false;
+window.gameover = false;
+window.restart = false;
+window.runGame = false;
 
 (function initGame() {
 
