@@ -20,10 +20,10 @@ SI.Ship = SI.Sprite.extend({
         this.fire = false;
         this.name = "ship";
 
-        if (el.addEventListener) {
+        if (window.addEventListener) {
             window.addEventListener('keydown', SI.bind(this.keySetState, this), false);
             window.addEventListener('keyup', SI.bind(this.keyRemoveFromList, this), false);
-        } else if (el.attachEvent) {
+        } else if (window.attachEvent) {
             window.attachEvent('onkeydown', SI.bind(this.keySetState, this), false);
             window.attachEvent('onkeyup', SI.bind(this.keyRemoveFromList, this), false);
         }
