@@ -199,7 +199,8 @@ function updateAliensGroup() {
         if (ship.fire) {
             // колизия "чужой" <--> "пуля"
             if (SI.detectColision(aliens[i], ship.bullet)) {
-                aliens[i].deleteDOM(); //debug
+                bang.setPosition(aliens[i].getPositionX(),aliens[i].getPositionY());
+                bang.draw();
                 aliens.splice(i, 1);
                 --leng;
                 ship.bullet.setPosition(ship.getPositionX(), ship.getPositionY() - 24);
