@@ -28,7 +28,7 @@ SI.Scene.prototype = {
 
     gameLoopCallback: function () {
         this._loopFrame++;
-        this.loop = window.requestAnimationFrame(this.gameLoopCallback,this));
+        this.loop = window.requestAnimationFrame(SI.bind(this.gameLoopCallback,this));
         this.callback.call(this, this);
     },
 
@@ -41,7 +41,7 @@ SI.Scene.prototype = {
 
     unpauseGame: function () {
         if (!this.loop) {
-            this.loop = window.requestAnimationFrame(this.gameLoopCallback,this));
+            this.loop = window.requestAnimationFrame(SI.bind(this.gameLoopCallback,this));
         }
     },
 
