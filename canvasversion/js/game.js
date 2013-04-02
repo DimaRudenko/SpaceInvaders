@@ -4,6 +4,7 @@
     aliens = [];
     ship = {};
     scene = {};
+    bang ={},
     currentWay = 'left';
     level = 1;
     score = 0;
@@ -22,6 +23,10 @@
 
     updateAliensGroup();
     ship.update();
+
+    bang = SI.bang();
+    bang.addTo(scene);
+
     context.fillStyle = "rgba(0, 0, 0, 1)";
     context.fillRect(0, 0, scene.width, scene.height);
     context.strokeStyle = 'white';
@@ -50,7 +55,7 @@ function GameStart() {
 
         context.font = 'bold 10pt Arial';
         context.fillStyle = "rgba(211, 211, 211, 1)";
-        context.fillText('Level:  ' + level, 20, 20);
+        context.fillText('Level:  ' + level, 30, 20);
         context.fillText('Score:  ' + score, scene.getWidth() - 80, 20);
 
         if (aliens.length === 0) {
