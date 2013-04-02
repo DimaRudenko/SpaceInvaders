@@ -45,7 +45,11 @@ SI.Ship = SI.Sprite.extend({
 
     // Простите за такую подписку на клавиши :(
     keySetState: function (e) {
-        console.log(e);
+        if (!e) {
+            e = window.event;
+        }
+        alert(e);
+
         if (e.keyCode === this.key.LEFT) {
             delete this.keyPressedList[this.key.RIGHT];
         }
