@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+		<title>load</title>
+		
+		<script>
+		
+			var ctx;
+			var cache_image;
+	
+				//iniciamos el proceso aqui & bind del teclado.
+			function start() {				
+		
+				canvas = document.getElementById('canvas');
+				ctx = canvas.getContext('2d');
+		
+				//configuring
+				//definiendo la configuracion de las fuentes.
+				ctx.font = '12px Courier';
+				
+				var images = ["MOI1.PNG", "asteroid_mod.PNG","f22_moi__ship.PNG"];
+				
+				loadImg(painter, images);	
+
+						
+
+			}
+			
+			
+			function loadImg(callback, src){
+				
+				
+				var index = 0; 
+			//	var imagen = [new Image(),new Image(),new Image()];
+				var imagen = [];
+				for (var i=0; i < src.length; i++) {
+			
+				imagen[i] =  new Image();
+				var x = 0; 
+				imagen[i].onload = function(){
+				    
+				    if(cache_image == null) cache_image = {};
+				    cache_image[src[x]] = imagen[x];
+					//alert("load"+src[x]);
+					
+					x++;
+					if(x == src.length)draw("asteroid_mod.PNG"); 
+					
+			
+				}
+				
+				imagen[i].src = src[i];
+						
+				};	
+				
+			}
+			
+			
+			function painter(imagen,src){
+				  if(cache_image == null) cache_image = {};
+			
+				 
+				 return true; 
+			}
+			
+			function draw(src){
+				 ctx.drawImage(cache_image[src],100,100);
+				
+			}
+		</script>
+		
+	</head>
+
+	<body onload="start()">
+		<canvas id="canvas" width="900" height="600">
+			Browser incompatible with canvas / incompatible con canvas.
+		</canvas>
+
+	</body>
+</html>

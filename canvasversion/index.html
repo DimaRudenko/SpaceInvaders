@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Space Invaders for UA Web Challenge Canvas version</title>
+    <link href="../css/application.css" rel="stylesheet" type="text/css"/>
+    <!--stats-->
+    <script src="../lib/stats/stats.min.js"></script>
+
+
+    <!-- game-->
+    <script src="js/si.js"></script>
+    <script src="js/class.js"></script>
+    <script src="js/scene.js"></script>
+    <script src="js/sprite.js"></script>
+    <script src="js/ship.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/alien.js"></script>
+
+
+</head>
+<body>
+<div id="note">
+    <h3>Управление</h3>
+    <p>A - влево</p>
+    <p>S - вправо</p>
+    <p>SPACE - выстрел</p>
+</div>
+
+<div style="position: absolute; right: 120px">
+    <div id="control">
+        <a href="#" id="start"  class="knopka" onclick="GameStart()">Start</a>
+        <a href="#" id="pause" class="knopka"onclick="GamePause()" >Pause</a>
+        <a href="#" id="reset" class="knopka"onclick="GameReset()" >Reset</a>
+    </div>
+</div>
+<div id="wrapper">
+    <canvas id="canvas" width="800" height="600">Плохой браузер :(</canvas>
+</div>
+
+
+<script src="../lib/stats/stats.include.js"></script>
+<script src="js/game.js"></script>
+<script type="text/javascript">
+
+
+</script>
+
+</body>
+</html>
