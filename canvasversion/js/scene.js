@@ -1,5 +1,10 @@
 var SI = SI || {};
-
+/**
+ *
+ * Главная сцена игры.
+ * Содержит дополнительные методы для создания петли игры
+ *
+ */
 SI.Scene = function (canvas) {
     canvas = canvas || "canvas";
     this.canvas = document.getElementById(canvas);

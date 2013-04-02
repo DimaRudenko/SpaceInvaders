@@ -1,5 +1,10 @@
+/**
+ * Базовая единица игры.
+ * Все игровые объекты экстендится от этого класса
+ *
+ * @type {*|void}
+ */
 SI.Sprite = SI.Class.extend({
-
 
     init: function (src, width, height) {
         this.initImage(src, width, height);

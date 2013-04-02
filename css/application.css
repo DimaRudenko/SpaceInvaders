@@ -87,6 +87,7 @@ body {
     padding: 9px 19px;
     text-decoration: none;
     text-shadow: 1px 1px 0px #ffffff;
+    width: 40px;
 }
 
 .knopka:hover {
