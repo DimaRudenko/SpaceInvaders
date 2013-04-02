@@ -1,3 +1,6 @@
+/**
+ * Спрайт взрыва корабля  
+ */ 
 SI.Bang = SI.Sprite.extend({
 
     init: function () {
