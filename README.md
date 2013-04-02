@@ -3,11 +3,11 @@ Space Invaders for UA Web Challenge 2013
 
 ## Описание
 
-Реализовано две версии игры: canvas и DOM-версия.
+Реализовано две версии игры:
 
 [canvas версия][]
 
-[спрайт- версия][]
+[DOM- версия][] для запуска в ИЕ8 или рендера игры без canvas
 
 ### Запуск локально
 
@@ -25,7 +25,7 @@ Space Invaders for UA Web Challenge 2013
 ## Благодарности:
 
   - Андрею Чижу за наставничество и предложение взять участие в конкурсе.
-  - Тане Бордиян  за  поддержку.
+  - Тане Бордиян  за поддержку.
 
    [canvas версия]: http://dimarudenko.github.com/SpaceInvaders/canvasversion/index.html
    [спрайт- версия]: http://dimarudenko.github.com/SpaceInvaders/spriteversion/index.html
