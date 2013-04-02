@@ -11,8 +11,6 @@ window.runGame = false;
 
 (function initGame() {
 
-
-
     scene = SI.scene("canvas");
     scene.initDOM();
 
