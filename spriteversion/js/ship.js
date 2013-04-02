@@ -26,7 +26,6 @@ SI.Ship = SI.Sprite.extend({
         } else if (window.attachEvent) {
             window.document.attachEvent('onkeydown', SI.bind(this.keySetState, this), false);
             window.document.attachEvent('onkeyup', SI.bind(this.keyRemoveFromList, this), false);
-            console.log("ok");
         }
 
         return this;
@@ -46,7 +45,7 @@ SI.Ship = SI.Sprite.extend({
     // Простите за такую подписку на клавиши :(
     keySetState: function (e) {
 
-        alert("a");
+        alert(e);
 
         if (e.keyCode === this.key.LEFT) {
             delete this.keyPressedList[this.key.RIGHT];
