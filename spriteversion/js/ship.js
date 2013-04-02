@@ -24,8 +24,8 @@ SI.Ship = SI.Sprite.extend({
             window.addEventListener('keydown', SI.bind(this.keySetState, this), false);
             window.addEventListener('keyup', SI.bind(this.keyRemoveFromList, this), false);
         } else if (window.attachEvent) {
-            window.attachEvent('onkeydown', SI.bind(this.keySetState, this), false);
-            window.attachEvent('onkeyup', SI.bind(this.keyRemoveFromList, this), false);
+            window.document.attachEvent('onkeydown', SI.bind(this.keySetState, this), false);
+            window.document.attachEvent('onkeyup', SI.bind(this.keyRemoveFromList, this), false);
         }
 
         return this;
