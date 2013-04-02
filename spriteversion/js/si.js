@@ -79,4 +79,4 @@ SI.detectColision = function (firsObj, secondObj) {
         })();
     }
 
-}())
+})()
