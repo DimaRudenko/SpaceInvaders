@@ -4,6 +4,7 @@ Space Invaders for UA Web Challenge 2013
 ## Описание
 
 Реализовано две версии игры: canvas и DOM-версия.
+
 [canvas версия][]
 
 [спрайт- версия][]
