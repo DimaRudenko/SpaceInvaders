@@ -62,10 +62,10 @@ function GameOver() {
 
 function GamePause() {
     if (pause) {
-        scene.unpauseGame();
+        window.scene.unpauseGame();
         pause = false;
     } else {
-        scene.pauseGame();
+        window.scene.pauseGame();
         pause = true;
     }
 
