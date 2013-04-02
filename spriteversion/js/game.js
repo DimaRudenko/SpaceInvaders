@@ -1,16 +1,16 @@
-
-aliens = [];
-ship = {};
-scene = {};
-currentWay = 'left';
-level = 1;
-score = 0;
-pause = false;
-gameover = false;
-restart = false;
-runGame = false;
+window.aliens = [];
+window.ship = {};
+window.scene = {};
+window.currentWay = 'left';
+window.level = 1;
+window.score = 0;
+window.pause = false;
+window.gameover = false;
+window.restart = false;
+window.runGame = false;
 
 (function initGame() {
+
     scene = SI.scene("canvas");
     scene.initDOM();
 
@@ -61,12 +61,12 @@ function GameOver() {
 
 
 function GamePause() {
-    if (pause) {
-        scene.unpauseGame();
-        pause = false;
+    if (window.pause) {
+        window.scene.unpauseGame();
+        window.pause = false;
     } else {
-        scene.pauseGame();
-        pause = true;
+        window.scene.pauseGame();
+        window.pause = true;
     }
 
 }

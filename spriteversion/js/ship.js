@@ -19,8 +19,14 @@ SI.Ship = SI.Sprite.extend({
         this.bullet = SI.bullet();
         this.fire = false;
         this.name = "ship";
-        window.addEventListener('keydown', SI.bind(this.keySetState, this), false);
-        window.addEventListener('keyup', SI.bind(this.keyRemoveFromList, this), false);
+
+        if (window.addEventListener) {
+            window.addEventListener('keydown', SI.bind(this.keySetState, this), false);
+            window.addEventListener('keyup', SI.bind(this.keyRemoveFromList, this), false);
+        } else if (window.attachEvent) {
+            window.attachEvent('onkeydown', SI.bind(this.keySetState, this), false);
+            window.attachEvent('onkeyup', SI.bind(this.keyRemoveFromList, this), false);
+        }
 
         return this;
     },
