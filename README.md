@@ -7,6 +7,8 @@ Space Invaders for UA Web Challenge 2013
 
 [canvas версия][]
 
+и
+
 [DOM- версия][] для запуска в ИЕ8 или рендера игры без canvas
 
 ### Запуск локально
